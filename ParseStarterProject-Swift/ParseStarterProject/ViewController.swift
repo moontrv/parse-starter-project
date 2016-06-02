@@ -16,8 +16,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
+        var product = PFObject(className: "Products")
+        product["name"] = "Pizza"
+        product["description"] = "Deliciously cheesy"
+        product["price"] = 9.99
+        product.saveInBackgroundWithBlock { (success, error) in
+            if success == true{
+                print("Sucessful")
+            }else{
+                print("Failed")
+                print(error)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
